@@ -593,18 +593,23 @@
             </div>
           </div>
 
+          <!-- ═══════════════════════════════════════════════════
+               FORMULARIO — Web3Forms (funciona en GitHub Pages)
+               1. Ve a https://web3forms.com
+               2. Pon aaescabiax@gmail.com → Get Access Key
+               3. Sustituye TU_ACCESS_KEY_AQUI por la clave recibida
+          ═══════════════════════════════════════════════════ -->
           <form
             class="contact-form glass reveal"
             id="contactForm"
-            action="https://formspree.io/f/mbdzzygz"
-            method="POST"
             novalidate
             aria-label="Formulario de contacto"
           >
-            <!-- Formspree: redirige a success.html tras enviar -->
-            <input type="hidden" name="_subject" value="✉️ Nuevo mensaje desde tu Portfolio" />
-            <!-- Honeypot anti-spam -->
-            <input type="text"   name="_gotcha"  style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden"   name="access_key" value="bec61992-e1dd-40f4-a7d0-e00df4bfcc0f" />
+            <input type="hidden"   name="subject"    value="✉️ Nuevo mensaje desde tu Portfolio" />
+            <input type="hidden"   name="from_name"  value="Portfolio de Aarón" />
+            <input type="checkbox" name="botcheck"   style="display:none" tabindex="-1" />
+
             <div class="form-group">
               <label for="contact-name" class="form-label">Nombre</label>
               <input
@@ -640,7 +645,7 @@
               <input
                 type="text"
                 id="contact-subject"
-                name="subject"
+                name="contact_subject"
                 class="form-input"
                 placeholder="¿De qué quieres hablar?"
                 required
@@ -679,7 +684,7 @@
       </div>
     </section>
   </main>
-
+  
   <!-- ============================================================
        FOOTER
   ============================================================ -->
