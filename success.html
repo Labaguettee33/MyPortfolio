@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Mensaje enviado · Aarón Escabias</title>
+
+  <!-- Same Google Fonts as index -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom cursor (same as index) -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Particle canvas -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       SUCCESS PAGE
+  ============================================================ -->
+  <main class="success-page" role="main">
+
+    <!-- Minimal nav link back -->
+    <a href="index.html" class="nav-logo" style="position:fixed;top:22px;left:5%;z-index:100;" aria-label="Volver al portfolio">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-name">Aarón</span>
+      <span class="logo-slash">/</span>
+      <span class="logo-bracket">&gt;</span>
+    </a>
+
+    <article class="success-card" role="article" aria-labelledby="success-title">
+
+      <!-- Icon -->
+      <div class="success-icon-wrap" aria-hidden="true">
+        <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="success-title" id="success-title">¡Mensaje recibido!</h1>
+
+      <p class="success-subtitle">
+        Gracias por escribir. He recibido tu mensaje y te responderé
+        lo antes posible. Mientras tanto, puedes ver mi trabajo en GitHub.
+      </p>
+
+      <!-- Status pill -->
+      <div class="success-meta">
+        <span class="success-meta-dot" aria-hidden="true"></span>
+        Entregado a&nbsp;<strong>aaescabiax@gmail.com</strong>
+      </div>
+
+      <!-- Actions -->
+      <div class="success-actions">
+        <a href="index.html" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Volver al Portfolio
+        </a>
+        <a href="https://github.com/Labaguettee33" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          Ver mi GitHub
+        </a>
+      </div>
+
+      <p class="success-footer-note">// aarón.escabias · almería, españa 🇪🇸</p>
+
+    </article>
+
+  </main>
+
+  <script>
+    "use strict";
+
+    /* ----- Cursor ----- */
+    (function () {
+      const cursor   = document.getElementById("cursor");
+      const follower = document.getElementById("cursorFollower");
+      if (!cursor || !follower) return;
+      if (window.matchMedia("(hover: none), (pointer: coarse)").matches) return;
+
+      let mx = -100, my = -100, fx = -100, fy = -100;
+
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.left = mx + "px";
+        cursor.style.top  = my + "px";
+      });
+
+      (function loop() {
+        fx += (mx - fx) * 0.12;
+        fy += (my - fy) * 0.12;
+        follower.style.left = fx + "px";
+        follower.style.top  = fy + "px";
+        requestAnimationFrame(loop);
+      })();
+    })();
+
+    /* ----- Particles ----- */
+    (function () {
+      const canvas = document.getElementById("particleCanvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let W, H, particles = [];
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      class P {
+        constructor() { this.reset(true); }
+        reset(rand) {
+          this.x  = Math.random() * W;
+          this.y  = rand ? Math.random() * H : H + 10;
+          this.vx = (Math.random() - 0.5) * 0.3;
+          this.vy = -(Math.random() * 0.3 + 0.1);
+          this.r  = Math.random() * 1.5 + 0.6;
+          this.a  = Math.random() * 0.4 + 0.05;
+          this.c  = ["rgba(59,130,246,", "rgba(6,182,212,", "rgba(139,92,246,"][Math.floor(Math.random() * 3)];
+        }
+        update() {
+          this.x += this.vx; this.y += this.vy;
+          if (this.y < -10 || this.x < -10 || this.x > W + 10) this.reset();
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = this.c + this.a + ")";
+          ctx.fill();
+        }
+      }
+
+      resize();
+      for (let i = 0; i < 55; i++) particles.push(new P());
+      window.addEventListener("resize", () => { resize(); particles = []; for (let i = 0; i < 55; i++) particles.push(new P()); });
+
+      (function loop() {
+        ctx.clearRect(0, 0, W, H);
+
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const d  = Math.sqrt(dx * dx + dy * dy);
+            if (d < 110) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(59,130,246,${(1 - d / 110) * 0.1})`;
+              ctx.lineWidth   = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        particles.forEach((p) => { p.update(); p.draw(); });
+        requestAnimationFrame(loop);
+      })();
+    })();
+
+    /* ----- Auto-redirect after 12s ----- */
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 12000);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio de Aarón Escabias Expósito – Desarrollador de Aplicaciones Multiplataforma apasionado por el software y el clean code." />
+  <meta name="theme-color" content="#0a0f18" />
+  <title>Aarón Escabias · Developer Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       CURSOR CUSTOM
+  ============================================================ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ============================================================
+       CANVAS PARTICLES
+  ============================================================ -->
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <header class="navbar" id="navbar" role="banner">
+    <nav class="nav-container" aria-label="Navegación principal">
+      <a href="#hero" class="nav-logo" aria-label="Inicio">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-name">Aarón</span>
+        <span class="logo-slash">/</span>
+        <span class="logo-bracket">&gt;</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#about" class="nav-link" data-text="Sobre mí">Sobre mí</a></li>
+        <li><a href="#skills" class="nav-link" data-text="Skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-text="Proyectos">Proyectos</a></li>
+        <li><a href="#contact" class="nav-link" data-text="Contacto">Contacto</a></li>
+      </ul>
+
+      <a href="https://github.com/Labaguettee33" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="GitHub de Aarón">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+        </svg>
+        GitHub
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         HERO SECTION
+    ============================================================ -->
+    <section id="hero" class="hero" aria-label="Presentación">
+      <div class="hero-grid-bg" aria-hidden="true">
+        <div class="grid-line-h"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge animate-fade-up" style="--delay: 0.1s">
+          <span class="badge-dot"></span>
+          <span>Disponible para prácticas &amp; colaboraciones</span>
+        </div>
+
+        <p class="hero-greeting animate-fade-up" style="--delay: 0.25s">Hola mundo, soy</p>
+
+        <h1 class="hero-name animate-fade-up" style="--delay: 0.35s">
+          <span class="name-gradient">Aarón</span><br/>
+          <span class="name-gradient">Escabias</span>
+        </h1>
+
+        <div class="hero-typing-wrapper animate-fade-up" style="--delay: 0.5s">
+          <span class="typing-prefix">~/dev $&nbsp;</span>
+          <span class="typing-text" id="typingText" aria-live="polite"></span>
+          <span class="typing-cursor" aria-hidden="true">▋</span>
+        </div>
+
+        <p class="hero-description animate-fade-up" style="--delay: 0.65s">
+          Estudiante de DAM en Almería construyendo las bases de una carrera en el desarrollo de software.
+          Código limpio, aprendizaje constante y hambre de crecer.
+        </p>
+
+        <div class="hero-buttons animate-fade-up" style="--delay: 0.8s">
+          <a href="#projects" class="btn btn-primary magnetic" data-magnetic>
+            <span>Ver Proyectos</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost magnetic" data-magnetic>
+            <span>Contactar</span>
+          </a>
+        </div>
+
+        <div class="hero-stats animate-fade-up" style="--delay: 0.95s">
+          <div class="stat-item">
+            <span class="stat-number" data-target="7">0</span>
+            <span class="stat-label">Tecnologías</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-number" data-target="3">0</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Ganas de aprender</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual animate-fade-left" style="--delay: 0.6s" aria-hidden="true">
+        <div class="code-window">
+          <div class="code-window-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="code-window-title">aaron.java</span>
+          </div>
+          <pre class="code-content"><code><span class="c-keyword">public class</span> <span class="c-class">Developer</span> {
+
+  <span class="c-keyword">private</span> String <span class="c-var">name</span> = <span class="c-string">"Aarón Escabias"</span>;
+  <span class="c-keyword">private</span> String <span class="c-var">location</span> = <span class="c-string">"Almería, España"</span>;
+  <span class="c-keyword">private</span> String <span class="c-var">status</span> = <span class="c-string">"Estudiante DAM"</span>;
+
+  <span class="c-keyword">private</span> String[] <span class="c-var">stack</span> = {
+    <span class="c-string">"Java"</span>, <span class="c-string">"SQL"</span>, <span class="c-string">"HTML5"</span>,
+    <span class="c-string">"CSS3"</span>, <span class="c-string">"JavaScript"</span>,
+    <span class="c-string">"Oracle DB"</span>, <span class="c-string">"MySQL"</span>
+  };
+
+  <span class="c-keyword">public</span> String <span class="c-method">getGoal</span>() {
+    <span class="c-keyword">return</span> <span class="c-string">"Full-Stack Developer"</span>;
+  }
+
+  <span class="c-keyword">public boolean</span> <span class="c-method">isLearning</span>() {
+    <span class="c-keyword">return true</span>; <span class="c-comment">// siempre</span>
+  }
+}</code></pre>
+        </div>
+
+        <div class="floating-badge badge-java" role="presentation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Java
+        </div>
+        <div class="floating-badge badge-sql" role="presentation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          SQL
+        </div>
+        <div class="floating-badge badge-web" role="presentation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          Web Dev
+        </div>
+      </div>
+
+      <div class="scroll-indicator animate-fade-up" style="--delay: 1.2s" aria-label="Desplaza hacia abajo">
+        <span>scroll</span>
+        <div class="scroll-line"><div class="scroll-dot"></div></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT SECTION
+    ============================================================ -->
+    <section id="about" class="section about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">01 // SOBRE MÍ</span>
+          <h2 id="about-title" class="section-title">¿Quién hay<br/><em>detrás del código</em>?</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p class="about-lead">
+              Soy Aarón, un desarrollador en formación con una convicción clara: el software bien construido
+              tiene el poder de transformar el mundo.
+            </p>
+            <p class="about-body">
+              Actualmente curso 1º de <strong>Desarrollo de Aplicaciones Multiplataforma</strong> en Almería,
+              donde cada día consolido mi comprensión de la programación orientada a objetos con Java,
+              las bases de datos relacionales con Oracle y MySQL, y el desarrollo web frontend.
+            </p>
+            <p class="about-body">
+              Mi obsesión es el <strong>clean code</strong>: código legible, mantenible y elegante.
+              No me conformo con que algo funcione; quiero entender por qué funciona.
+              Esa curiosidad es mi mayor activo como desarrollador emergente.
+            </p>
+
+            <div class="about-traits">
+              <div class="trait-item">
+                <div class="trait-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <span>Clean Code First</span>
+              </div>
+              <div class="trait-item">
+                <div class="trait-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                </div>
+                <span>Aprendizaje Continuo</span>
+              </div>
+              <div class="trait-item">
+                <div class="trait-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <span>Orientado a Objetivos</span>
+              </div>
+              <div class="trait-item">
+                <div class="trait-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <span>Trabajo en Equipo</span>
+              </div>
+            </div>
+
+            <a href="https://github.com/Labaguettee33" target="_blank" rel="noopener noreferrer" class="btn btn-outline reveal-delay-1">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              Ver mi GitHub
+            </a>
+          </div>
+
+          <div class="about-terminal reveal">
+            <div class="terminal-window">
+              <div class="terminal-bar">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="terminal-title">~/aarón — bash</span>
+              </div>
+              <div class="terminal-body">
+                <div class="terminal-line">
+                  <span class="t-prompt">aarón@dev:~$</span>
+                  <span class="t-cmd"> whoami</span>
+                </div>
+                <div class="terminal-output">Aarón Escabias Expósito</div>
+
+                <div class="terminal-line">
+                  <span class="t-prompt">aarón@dev:~$</span>
+                  <span class="t-cmd"> cat education.txt</span>
+                </div>
+                <div class="terminal-output">
+                  📚 DAM – Desarrollo de Aplicaciones<br/>
+                  &nbsp;&nbsp;&nbsp;Multiplataforma (1º Curso)<br/>
+                  📍 Almería, España
+                </div>
+
+                <div class="terminal-line">
+                  <span class="t-prompt">aarón@dev:~$</span>
+                  <span class="t-cmd"> ls skills/</span>
+                </div>
+                <div class="terminal-output">
+                  java/ &nbsp;&nbsp;sql/ &nbsp;&nbsp;html5/<br/>
+                  css3/ &nbsp;js/ &nbsp;&nbsp;&nbsp;oracle/<br/>
+                  mysql/
+                </div>
+
+                <div class="terminal-line">
+                  <span class="t-prompt">aarón@dev:~$</span>
+                  <span class="t-cmd"> echo $GOAL</span>
+                </div>
+                <div class="terminal-output t-highlight">Convertirme en Full-Stack Developer 🚀</div>
+
+                <div class="terminal-line">
+                  <span class="t-prompt">aarón@dev:~$</span>
+                  <span class="t-cursor-blink">▋</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-location-card">
+              <div class="location-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="loc-label">Ubicación actual</p>
+                <p class="loc-city">Almería, España 🇪🇸</p>
+              </div>
+              <div class="location-pulse" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS SECTION
+    ============================================================ -->
+    <section id="skills" class="section skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">02 // HABILIDADES</span>
+          <h2 id="skills-title" class="section-title">Mi stack<br/><em>tecnológico</em></h2>
+        </div>
+
+        <div class="skills-grid">
+
+          <!-- Java -->
+          <article class="skill-card reveal" data-skill="75" aria-label="Java, nivel 75%">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M8.851 18.56s-.917.534.653.714c1.902.218 2.874.187 4.969-.211 0 0 .552.346 1.321.646-4.699 2.013-10.633-.118-6.943-1.149M8.276 15.933s-1.028.761.542.924c2.032.209 3.636.227 6.413-.308 0 0 .384.389.987.602-5.679 1.661-12.007.13-7.942-1.218M13.116 11.475c1.158 1.333-.304 2.533-.304 2.533s2.939-1.518 1.589-3.418c-1.261-1.772-2.228-2.652 3.007-5.688 0-.001-8.216 2.051-4.292 6.573"/>
+                <path d="M19.33 20.504s.679.559-.747.991c-2.712.822-11.288 1.069-13.669.033-.856-.373.75-.89 1.254-.998.527-.114.828-.93.828-.93-.953.671-5.488 1.172-2.359 1.671 8.547 1.388 15.566-.625 14.693-2.767M9.292 13.21s-4.362 1.036-1.544 1.412c1.189.159 3.561.123 5.77-.062 1.806-.152 3.618-.477 3.618-.477s-.637.272-1.098.587c-4.429 1.165-12.986.623-10.522-.568 2.082-1.006 3.776-.892 3.776-.892M17.116 17.584c4.503-2.34 2.421-4.589.968-4.285-.355.074-.515.138-.515.138s.132-.207.385-.297c2.875-1.011 5.086 2.981-.928 4.562 0-.001.07-.062.09-.118M14.401 0s2.494 2.494-2.365 6.33c-3.896 3.077-.888 4.832-.001 6.836-2.274-2.053-3.943-3.858-2.824-5.539 1.644-2.469 6.197-3.665 5.19-7.627M9.734 23.924c4.322.277 10.959-.153 11.116-2.198 0 0-.302.775-3.572 1.391-3.688.694-8.239.613-10.937.168 0-.001.553.457 3.393.639"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">Java</h3>
+            <p class="skill-desc">POO, estructuras de datos, lógica de negocio.</p>
+            <div class="skill-bar-track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel Java 75%">
+              <div class="skill-bar-fill" data-width="75"></div>
+            </div>
+            <span class="skill-percent">75%</span>
+          </article>
+
+          <!-- SQL / Oracle DB -->
+          <article class="skill-card reveal" data-skill="70" aria-label="SQL y Oracle DB, nivel 70%">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">Oracle DB / SQL</h3>
+            <p class="skill-desc">Consultas avanzadas, DDL/DML, relaciones y vistas.</p>
+            <div class="skill-bar-track" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel SQL 70%">
+              <div class="skill-bar-fill" data-width="70"></div>
+            </div>
+            <span class="skill-percent">70%</span>
+          </article>
+
+          <!-- MySQL -->
+          <article class="skill-card reveal" data-skill="72" aria-label="MySQL, nivel 72%">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">MySQL</h3>
+            <p class="skill-desc">Gestión de bases de datos, optimización de consultas.</p>
+            <div class="skill-bar-track" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel MySQL 72%">
+              <div class="skill-bar-fill" data-width="72"></div>
+            </div>
+            <span class="skill-percent">72%</span>
+          </article>
+
+          <!-- HTML5 -->
+          <article class="skill-card reveal" data-skill="80" aria-label="HTML5, nivel 80%">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="4 7 4 4 20 4 20 7"/>
+                <line x1="9" y1="20" x2="15" y2="20"/>
+                <line x1="12" y1="4" x2="12" y2="20"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">HTML5</h3>
+            <p class="skill-desc">Semántica, accesibilidad, SEO y estructura sólida.</p>
+            <div class="skill-bar-track" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel HTML5 80%">
+              <div class="skill-bar-fill" data-width="80"></div>
+            </div>
+            <span class="skill-percent">80%</span>
+          </article>
+
+          <!-- CSS3 -->
+          <article class="skill-card reveal" data-skill="78" aria-label="CSS3, nivel 78%">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 12h8"/>
+                <path d="M12 8v8"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">CSS3</h3>
+            <p class="skill-desc">Grid, Flexbox, animaciones, diseño responsive.</p>
+            <div class="skill-bar-track" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel CSS3 78%">
+              <div class="skill-bar-fill" data-width="78"></div>
+            </div>
+            <span class="skill-percent">78%</span>
+          </article>
+
+          <!-- JavaScript -->
+          <article class="skill-card reveal" data-skill="60" aria-label="JavaScript, nivel 60%">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <path d="M9 9h1v6H9"/>
+                <path d="M14 9h1.5a1.5 1.5 0 010 3H14v3"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">JavaScript</h3>
+            <p class="skill-desc">DOM, eventos, lógica básica, asincronía en progreso.</p>
+            <div class="skill-bar-track" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel JavaScript 60%">
+              <div class="skill-bar-fill" data-width="60"></div>
+            </div>
+            <span class="skill-percent">60%</span>
+          </article>
+
+          <!-- Git -->
+          <article class="skill-card reveal" data-skill="65" aria-label="Git y GitHub, nivel 65%">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="currentColor" aria-hidden="true">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">Git / GitHub</h3>
+            <p class="skill-desc">Control de versiones, repositorios, commits.</p>
+            <div class="skill-bar-track" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel Git 65%">
+              <div class="skill-bar-fill" data-width="65"></div>
+            </div>
+            <span class="skill-percent">65%</span>
+          </article>
+
+          <!-- Soft: Clean Code -->
+          <article class="skill-card skill-card--soft reveal" aria-label="Habilidades blandas">
+            <div class="skill-card-glow" aria-hidden="true"></div>
+            <div class="skill-icon-wrap">
+              <svg class="skill-icon" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+            <h3 class="skill-name">Actitud &amp; Softskills</h3>
+            <p class="skill-desc">Curiosidad, rigor, trabajo en equipo, autoaprendizaje.</p>
+            <div class="soft-badges">
+              <span class="soft-badge">🔍 Curioso</span>
+              <span class="soft-badge">⚡ Proactivo</span>
+              <span class="soft-badge">📖 Autodidacta</span>
+              <span class="soft-badge">🤝 Team Player</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJECTS SECTION
+    ============================================================ -->
+    <section id="projects" class="section projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">03 // PROYECTOS</span>
+          <h2 id="projects-title" class="section-title">Código que<br/><em>habla por sí solo</em></h2>
+          <p class="section-subtitle">Proyectos desarrollados durante mi formación. Más en construcción permanente.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Project 1 — Portfolio -->
+          <article class="project-card reveal" aria-labelledby="proj1-title">
+            <div class="project-cover project-cover--2" aria-hidden="true">
+              <div class="project-cover-pattern"></div>
+              <div class="project-cover-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-badges">
+                <span class="proj-badge">HTML5</span>
+                <span class="proj-badge">CSS3</span>
+                <span class="proj-badge">JavaScript</span>
+              </div>
+              <h3 class="project-title" id="proj1-title">Portfolio Web Personal</h3>
+              <p class="project-desc">
+                Este mismo portfolio: diseño dark cyber-elegante, animaciones de scroll,
+                efecto de partículas y un typing effect. Frontend puro sin frameworks.
+              </p>
+              <div class="project-footer">
+                <a href="https://github.com/Labaguettee33" target="_blank" rel="noopener noreferrer" class="proj-link" aria-label="Ver código en GitHub">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                  Código
+                </a>
+                <span class="proj-status proj-status--live">Live</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 — Mystery / Skeleton -->
+          <article class="project-card project-card--skeleton reveal" aria-labelledby="proj2-title">
+            <div class="project-cover project-cover--skeleton" aria-hidden="true">
+              <div class="project-cover-pattern"></div>
+              <div class="project-cover-icon project-cover-icon--skeleton">
+                <!-- Animated lock / mystery icon -->
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0110 0v4"/>
+                  <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                </svg>
+              </div>
+              <!-- Animated scanning line -->
+              <div class="skeleton-scan-line" aria-hidden="true"></div>
+            </div>
+            <div class="project-body">
+              <div class="project-badges">
+                <span class="proj-badge proj-badge--redacted">???</span>
+                <span class="proj-badge proj-badge--redacted">???</span>
+                <span class="proj-badge proj-badge--redacted">???</span>
+              </div>
+              <h3 class="project-title project-title--skeleton" id="proj2-title">
+                Proyecto // 02
+                <span class="skeleton-dots" aria-label="en proceso">
+                  <span></span><span></span><span></span>
+                </span>
+              </h3>
+              <p class="project-desc project-desc--skeleton">
+                Algo está siendo construido. Los detalles se revelarán cuando el código esté listo.
+                Por ahora, solo polvo de commits y café.
+              </p>
+              <div class="project-footer">
+                <span class="proj-link proj-link--disabled" aria-disabled="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                  Pronto en GitHub
+                </span>
+                <span class="proj-status proj-status--wip">En Desarrollo</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="projects-cta reveal">
+          <p class="projects-cta-text">¿Quieres ver más? Todo el trabajo está en GitHub.</p>
+          <a href="https://github.com/Labaguettee33" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            Ver todos los repositorios
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+    ============================================================ -->
+    <section id="contact" class="section contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">04 // CONTACTO</span>
+          <h2 id="contact-title" class="section-title">¿Construimos<br/><em>algo juntos</em>?</h2>
+          <p class="section-subtitle">Siempre abierto a nuevas oportunidades, colaboraciones y conversaciones interesantes.</p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info reveal">
+            <a href="https://github.com/Labaguettee33" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="GitHub de Aarón">
+              <div class="contact-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </div>
+              <div class="contact-card-content">
+                <span class="contact-card-label">GitHub</span>
+                <span class="contact-card-value">@Labaguettee33</span>
+              </div>
+              <svg class="contact-card-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <div class="contact-card contact-card--static reveal">
+              <div class="contact-card-icon contact-card-icon--location">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-card-content">
+                <span class="contact-card-label">Ubicación</span>
+                <span class="contact-card-value">Almería, España 🇪🇸</span>
+              </div>
+            </div>
+
+            <div class="contact-availability reveal">
+              <div class="avail-indicator">
+                <span class="avail-dot"></span>
+                <span>Disponible para prácticas</span>
+              </div>
+              <p class="avail-desc">Buscando oportunidades para aplicar mis conocimientos y seguir creciendo en el sector tech.</p>
+            </div>
+          </div>
+
+          <form
+            class="contact-form glass reveal"
+            id="contactForm"
+            action="https://formspree.io/f/aaescabiax@gmail.com"
+            method="POST"
+            novalidate
+            aria-label="Formulario de contacto"
+          >
+            <!-- Formspree: redirige a success.html tras enviar -->
+            <input type="hidden" name="_subject" value="✉️ Nuevo mensaje desde tu Portfolio" />
+            <!-- Honeypot anti-spam -->
+            <input type="text"   name="_gotcha"  style="display:none" tabindex="-1" autocomplete="off" />
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Nombre</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                class="form-input"
+                placeholder="Tu nombre"
+                required
+                autocomplete="name"
+                aria-required="true"
+              />
+              <span class="form-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                class="form-input"
+                placeholder="tu@email.com"
+                required
+                autocomplete="email"
+                aria-required="true"
+              />
+              <span class="form-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">Asunto</label>
+              <input
+                type="text"
+                id="contact-subject"
+                name="subject"
+                class="form-input"
+                placeholder="¿De qué quieres hablar?"
+                required
+                aria-required="true"
+              />
+              <span class="form-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Mensaje</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                class="form-input form-textarea"
+                placeholder="Cuéntame..."
+                rows="5"
+                required
+                aria-required="true"
+              ></textarea>
+              <span class="form-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn--full form-submit" id="formSubmit">
+              <span class="btn-text">Enviar mensaje</span>
+              <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span class="btn-loader" aria-hidden="true"></span>
+            </button>
+
+            <div class="form-success" id="formSuccess" role="status" aria-live="polite" hidden>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              ¡Mensaje enviado! Te responderé pronto.
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <a href="#hero" class="footer-logo" aria-label="Ir al inicio">
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-name">Aarón</span>
+          <span class="logo-slash">/</span>
+          <span class="logo-bracket">&gt;</span>
+        </a>
+        <p class="footer-tagline">Construyendo el futuro, un commit a la vez.</p>
+      </div>
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; 2025 Aarón Escabias Expósito · Diseñado &amp; desarrollado con
+          <span class="footer-heart" aria-label="amor">♥</span>
+          en Almería
+        </p>
+        <a href="#hero" class="back-to-top" aria-label="Volver arriba">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+          Volver arriba
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPT
+  ============================================================ -->
+  <script src="script.js"></script>
+</body>
+</html>
