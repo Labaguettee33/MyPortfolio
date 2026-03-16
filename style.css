@@ -1614,15 +1614,12 @@ a.contact-card:hover .contact-card-arrow {
 
 .form-info {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px;
-  background-color: #f0f7ff; /* Un azul muy suave */
-  border: 1px solid #cce5ff;
-  border-radius: 6px;
-  color: #004085;
+  align-items: center; /* Esto alinea verticalmente el icono y el texto */
+  gap: 8px;           /* Espacio entre el icono y el texto */
+  margin-top: 10px;   /* Separación del botón */
+  color: #ffffff;     /* Ajusta según el color de tu fondo */
   font-size: 0.9rem;
-  margin-top: 10px;
+  opacity: 0.8;       /* Un toque sutil */
 }
 
 /* ================================================================
