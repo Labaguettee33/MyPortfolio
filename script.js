@@ -435,6 +435,23 @@
 
   if (!form) return;
 
+  function showConfirmationOnReturn() {
+    if (!success) return;
+    if (sessionStorage.getItem("contactFormSent") === "true") {
+      sessionStorage.removeItem("contactFormSent");
+      success.hidden = false;
+      success.style.display = "flex";
+      success.style.background = "";
+      success.style.color = "";
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }
+
+  showConfirmationOnReturn();
+
   function validate() {
     let isValid = true;
     const fields = [
@@ -501,8 +518,9 @@
       });
 
       if (response.ok) {
-        // OPCIÓN A: Redirigir a success.html (tu idea original)
-        window.location.href = "success.html";
+        sessionStorage.setItem("contactFormSent", "true");
+        const currentUrl = window.location.href.split("#")[0] + "#contact";
+        window.location.href = currentUrl;
       } else {
         const data = await response.json().catch(() => ({}));
         throw new Error(data?.errors?.[0]?.message || "Error al enviar");

@@ -1114,8 +1114,12 @@ body:has(button:hover) .cursor-follower {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-lg);
+}
+
+.skill-card--soft {
+  grid-column: span 2;
 }
 
 .skill-card {
@@ -1183,17 +1187,18 @@ body:has(button:hover) .cursor-follower {
 }
 
 .skill-bar-track {
-  height: 5px;
+  height: 6px;
   background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius-full);
   overflow: hidden;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 .skill-bar-fill {
   height: 100%;
   width: 0;
-  background: var(--accent-gradient);
+  background: linear-gradient(90deg, rgba(59,130,246,0.95) 0%, rgba(6,182,212,0.95) 55%, rgba(139,92,246,0.95) 100%);
   border-radius: var(--radius-full);
   transition: width 1.2s var(--ease-out);
   position: relative;
@@ -1207,9 +1212,8 @@ body:has(button:hover) .cursor-follower {
   transform: translateY(-50%);
   width: 8px;
   height: 8px;
-  background: white;
+  background: rgba(255,255,255,0.95);
   border-radius: 50%;
-  box-shadow: var(--shadow-glow-sm);
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -1748,6 +1752,14 @@ a.contact-card:hover .contact-card-arrow {
   }
 
   .about-terminal { order: -1; }
+
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skill-card--soft {
+    grid-column: span 3;
+  }
 }
 
 /* ================================================================
@@ -1763,8 +1775,16 @@ a.contact-card:hover .contact-card-arrow {
     font-size: clamp(2.5rem, 12vw, 4rem);
   }
 
+  .hero-greeting {
+    font-size: 0.9rem;
+  }
+
   .hero-typing-wrapper {
     font-size: 0.75rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
   }
 
   .hero-buttons { flex-direction: column; align-items: center; }
@@ -1772,6 +1792,41 @@ a.contact-card:hover .contact-card-arrow {
 
   .skills-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .skill-card--soft {
+    grid-column: span 1;
+  }
+
+  .skill-card {
+    padding: var(--space-lg);
+  }
+
+  .skill-name {
+    font-size: 0.95rem;
+  }
+
+  .skill-desc {
+    font-size: 0.75rem;
+    min-height: auto;
+  }
+
+  .soft-badges {
+    gap: 4px;
+  }
+
+  .soft-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
   }
 
   .projects-grid {
@@ -1791,10 +1846,6 @@ a.contact-card:hover .contact-card-arrow {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-sm);
-  }
-
-  .section-title {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
   }
 }
 
