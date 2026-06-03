@@ -704,7 +704,7 @@ body:has(button:hover) .cursor-follower {
 /* Scroll indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: var(--space-xl);
+  bottom: calc(var(--space-xl) - 5rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -716,6 +716,12 @@ body:has(button:hover) .cursor-follower {
   font-size: 0.65rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .scroll-indicator {
+    bottom: calc(var(--space-xl) + 2.2rem);
+  }
 }
 
 .scroll-line {
