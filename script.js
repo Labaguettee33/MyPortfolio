@@ -431,26 +431,10 @@
 (function initForm() {
   const form    = document.getElementById("contactForm");
   const submit  = document.getElementById("formSubmit");
-  const success = document.getElementById("formSuccess");
 
   if (!form) return;
 
-  function showConfirmationOnReturn() {
-    if (!success) return;
-    if (sessionStorage.getItem("contactFormSent") === "true") {
-      sessionStorage.removeItem("contactFormSent");
-      success.hidden = false;
-      success.style.display = "flex";
-      success.style.background = "";
-      success.style.color = "";
-      const contactSection = document.getElementById("contact");
-      if (contactSection) {
-        contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  }
-
-  showConfirmationOnReturn();
+  // No persistent DOM success node — redirect to success.html on successful submit.
 
   function validate() {
     let isValid = true;
@@ -518,9 +502,8 @@
       });
 
       if (response.ok) {
-        sessionStorage.setItem("contactFormSent", "true");
-        const currentUrl = window.location.href.split("#")[0] + "#contact";
-        window.location.href = currentUrl;
+        // Redirect to success page on successful submission
+        window.location.href = "success.html";
       } else {
         const data = await response.json().catch(() => ({}));
         throw new Error(data?.errors?.[0]?.message || "Error al enviar");
@@ -528,30 +511,8 @@
     } catch (err) {
       submit.classList.remove("loading");
       submit.disabled = false;
-
-      if (success) {
-        success.hidden = false;
-        success.style.display = "flex";
-        // Estilos de error corregidos
-        success.style.background = "rgba(248,113,113,0.15)";
-        success.style.color = "#f87171";
-        
-        // CORRECCIÓN AQUÍ: Eliminamos las barras invertidas innecesarias
-        success.innerHTML = `
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" 
-               stroke="currentColor" stroke-width="2.5" 
-               stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
-            <line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-          <span>${err.message}</span>
-        `;
-
-        setTimeout(() => {
-          success.hidden = true;
-          success.style.display = "none";
-        }, 6000);
-      }
+      // Minimal error feedback: show an alert and keep form available
+      try { window.alert("Error enviando el formulario: " + err.message); } catch (e) { console.error(err); }
     }
   });
 })();
