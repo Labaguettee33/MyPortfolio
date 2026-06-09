@@ -1807,7 +1807,14 @@ a.contact-card:hover .contact-card-arrow {
   }
 
   .scroll-indicator {
-    bottom: var(--space-lg);
+    order: 2;
+    position: static;
+    transform: none;
+    left: auto;
+    bottom: auto;
+    margin-top: var(--space-2xl);
+    margin-inline: auto;
+    width: fit-content;
   }
 
   .about-grid,
