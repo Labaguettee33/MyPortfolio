@@ -216,7 +216,7 @@
     });
 
     // Close on nav link click
-    navLinks.querySelectorAll(".nav-link").forEach((link) => {
+    navLinks.querySelectorAll(".nav-link, .nav-menu-icon").forEach((link) => {
       link.addEventListener("click", () => {
         hamburger.classList.remove("open");
         navLinks.classList.remove("open");
